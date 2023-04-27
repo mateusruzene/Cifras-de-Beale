@@ -6,14 +6,21 @@ LDFLAGS = -lm
 CC = gcc
 
 # arquivos-objeto
-	objects = main.o
+	objects = beale.o libChaves.o libLista.o
      
-main: main.o 
-	$(CC) -o main main.o $(LDFLAGS)
+beale: beale.o 
+	$(CC) -o beale beale.o libChaves.o libLista.o $(LDFLAGS)
 
-main.o: main.c
-	$(CC) -c $(CFLAGS) main.c
+
+libChaves.o: libChaves.c
+	$(CC) -c $(CFLAGS) libChaves.c
+
+libLista.o: libLista.c
+	$(CC) -c $(CFLAGS) libLista.c
+
+beale.o: beale.c
+	$(CC) -c $(CFLAGS) beale.c
 
 clean:
-	rm -f $(objects) main
+	rm -f $(objects) beale
 
