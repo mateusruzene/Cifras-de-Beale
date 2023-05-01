@@ -1,10 +1,9 @@
-#include <stdio.h>
-struct nodo_lista
+struct nodo
 {
     int num;
-    struct nodo_lista *prox;
+    struct nodo *prox;
 };
-typedef struct nodo_lista nodo_lista_t;
+typedef struct nodo nodo_lista_t;
 
 struct lista
 {

@@ -3,9 +3,8 @@
  * Autor:
  *   Mateus Siqueira Ruzene - GRR:20221223
  */
-#include <stdio.h>
-#include "libChaves.h"
-#include "libLista.h"
+#include "libchaves.h"
+#include "liblista.h"
 
 /* Retorna um numero aleatorio da lista da cifra com a chave igual a @letra.*/;
 int aleat_num_cifra(chaves_t *chaves, char letra);

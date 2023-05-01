@@ -6,7 +6,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
-#include "libLista.h"
+#include "liblista.h"
 
 lista_t *cria_lista()
 {

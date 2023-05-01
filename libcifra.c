@@ -6,9 +6,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "libCifra.h"
-#include "libChaves.h"
-#include "libLista.h"
+#include "libchaves.h"
+#include "liblista.h"
+#include "libcifra.h"
 
 int aleat_num_cifra(chaves_t *chaves, char letra)
 {

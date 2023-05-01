@@ -3,7 +3,7 @@
  * Autor:
  *   Mateus Siqueira Ruzene - GRR:20221223
  */
-#include "libChaves.h"
+#include "libchaves.h"
 
 /* Codifica uma mensagem qualquer contida em um arquivo ASCII usando um livro cifra. */
 void codifica(chaves_t *chaves, FILE *entrada, FILE *saida);

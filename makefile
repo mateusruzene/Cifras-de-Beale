@@ -2,7 +2,7 @@
 CC=gcc
 CFLAGS= -Wall -std=c99
 
-OBJS= beale.o libChaves.o libLista.o libCifra.o libCodifica.o libDecodifica.o
+OBJS= beale.o libchaves.o liblista.o libcifra.o libcodifica.o libdecodifica.o
 
 all: beale
 

@@ -3,8 +3,7 @@
  * Autor:
  *   Mateus Siqueira Ruzene - GRR:20221223
  */
-#include <stdio.h>
-#include "libLista.h"
+#include "liblista.h"
 struct nodo_chaves
 {
     char letra;

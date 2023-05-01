@@ -7,9 +7,9 @@
 #include <stdio.h>
 #include <string.h>
 
-#include "libChaves.h"
-#include "libCifra.h"
-#include "libDecodifica.h"
+#include "libchaves.h"
+#include "libcifra.h"
+#include "libdecodifica.h"
 
 void decodifica(chaves_t *chaves, FILE *entrada, FILE *saida)
 {

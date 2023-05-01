@@ -6,8 +6,8 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
-#include "libLista.h"
-#include "libChaves.h"
+#include "liblista.h"
+#include "libchaves.h"
 
 chaves_t *cria_chaves()
 {

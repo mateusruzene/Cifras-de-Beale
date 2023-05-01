@@ -8,8 +8,8 @@
 #include <string.h>
 #include <time.h>
 #include <getopt.h>
-#include "libCodifica.h"
-#include "libDecodifica.h"
+#include "libcodifica.h"
+#include "libdecodifica.h"
 
 #define CODIFICA 1
 #define DECODIFICA 2
