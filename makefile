@@ -1,26 +1,19 @@
 # Makefile de exemplo (Manual do GNU Make)
-     
-CFLAGS = -Wall -std=c99 -g  # flags de compilacao
-LDFLAGS = -lm
+CC=gcc
+CFLAGS= -Wall -std=c99
 
-CC = gcc
+OBJS= beale.o libChaves.o libLista.o libCifra.o libCodifica.o libDecodifica.o
 
-# arquivos-objeto
-	objects = beale.o libChaves.o libLista.o
-     
-beale: beale.o 
-	$(CC) -o beale beale.o libChaves.o libLista.o $(LDFLAGS)
+all: beale
 
+beale: $(OBJS)
+	$(CC) -o beale $(OBJS) $(CFLAGS)
 
-libChaves.o: libChaves.c
-	$(CC) -c $(CFLAGS) libChaves.c
-
-libLista.o: libLista.c
-	$(CC) -c $(CFLAGS) libLista.c
-
-beale.o: beale.c
-	$(CC) -c $(CFLAGS) beale.c
+%.o: %.c
+	$(CC) -c $^ $(CFLAGS)
 
 clean:
-	rm -f $(objects) beale
+	rm -f $(OBJS)
 
+purge:
+	rm -f $(OBJS) beale

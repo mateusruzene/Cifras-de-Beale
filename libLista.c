@@ -20,12 +20,11 @@ lista_t *cria_lista()
     return lista;
 }
 
-
 lista_t *destroi_lista(lista_t *l)
 {
     nodo_lista_t *aux;
 
-    if(l->primeiro == NULL)
+    if (l->primeiro == NULL)
         return NULL;
 
     while (l->primeiro != NULL)
@@ -40,7 +39,6 @@ lista_t *destroi_lista(lista_t *l)
     return l;
 }
 
-
 int adiciona_inicio_lista(lista_t *l, int novo_valor)
 {
     nodo_lista_t *novo;
@@ -51,7 +49,22 @@ int adiciona_inicio_lista(lista_t *l, int novo_valor)
     novo->num = novo_valor;
     novo->prox = l->primeiro;
     l->primeiro = novo;
-    l->tam ++;
+    l->tam++;
 
     return 1;
+}
+
+int verifica_num_existente(lista_t *lista, int valor)
+{
+    nodo_lista_t *aux;
+
+    aux = lista->primeiro;
+    while (aux)
+    {
+        if (valor == aux->num)
+            return 1;
+        aux = aux->prox;
+    }
+
+    return 0;
 }
