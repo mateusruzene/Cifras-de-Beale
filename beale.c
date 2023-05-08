@@ -8,6 +8,9 @@
 #include <string.h>
 #include <time.h>
 #include <getopt.h>
+#include "libchaves.h"
+#include "liblista.h"
+#include "libcifra.h"
 #include "libcodifica.h"
 #include "libdecodifica.h"
 
@@ -91,6 +94,12 @@ int main(int argc, char **argv)
     argumentos_t *argumentos;
 
     srand(time(NULL));
+
+    if (argc == 1)
+    {
+        printf("Nenhum argumento fornecido.\n");
+        return 0;
+    }
 
     argumentos = trata_argumentos(argc, argv);
     entrada = fopen(argumentos->entrada, "r");

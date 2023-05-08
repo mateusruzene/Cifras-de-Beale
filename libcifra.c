@@ -6,14 +6,15 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <wctype.h>
 #include "libchaves.h"
 #include "liblista.h"
 #include "libcifra.h"
 
-int aleat_num_cifra(chaves_t *chaves, char letra)
+int aleat_num_cifra(struct chaves_t *chaves, char letra)
 {
-  nodo_chaves_t *chave = busca_chave(chaves, letra);
-  nodo_lista_t *aux;
+  struct nodo_chaves_t *chave = busca_chave(chaves, letra);
+  struct nodo_lista_t *aux;
   int aleatorio = rand() % chave->numeros->tam - 1;
 
   aux = chave->numeros->primeiro;
@@ -26,7 +27,7 @@ int aleat_num_cifra(chaves_t *chaves, char letra)
 int letra_prox_palavra(FILE *texto, char *letra)
 {
   char aux[64];
-  int status = fscanf(texto, "%ls", aux);
+  int status = fscanf(texto, "%s", aux);
   if (status == -1)
     return 0;
   *letra = aux[0];
@@ -34,32 +35,30 @@ int letra_prox_palavra(FILE *texto, char *letra)
   return 1;
 }
 
-void adiciona_letra_cifra(chaves_t *chaves, char letra, int numPosition)
+void adiciona_letra_cifra(struct chaves_t *chaves, char letra, int numPosition)
 {
-  nodo_chaves_t *aux;
+  struct nodo_chaves_t *aux;
 
-  if (!verifica_chave_existente(chaves, letra))
+  if (!(aux = busca_chave(chaves, letra)))
   {
     aux = adiciona_ordem_chaves(chaves, letra);
     adiciona_inicio_lista(aux->numeros, numPosition);
     return;
   }
 
-  aux = busca_chave(chaves, letra);
   adiciona_inicio_lista(aux->numeros, numPosition);
 
   return;
 }
 
-chaves_t *cria_chaves_livro(FILE *livroCifras)
+struct chaves_t *cria_chaves_livro(FILE *livroCifras)
 {
   char letra;
   int i;
 
-  chaves_t *chaves = cria_chaves();
+  struct chaves_t *chaves = cria_chaves();
   if (chaves == NULL)
     return NULL;
-
   rewind(livroCifras);
   i = 0;
   while (letra_prox_palavra(livroCifras, &letra))
@@ -88,13 +87,13 @@ char *pega_linha(FILE *arq)
   return linha;
 }
 
-void montaLinhaCifra(FILE *cifras, chaves_t *chaves, char letra)
+void montaLinhaCifra(FILE *cifras, struct chaves_t *chaves, char letra)
 {
   char *linha, *linhaFormatada;
   int numPosicao;
-  nodo_chaves_t *aux = adiciona_ordem_chaves(chaves, letra);
+  struct nodo_chaves_t *aux = adiciona_ordem_chaves(chaves, letra);
 
-  linha = leLinha(cifras);
+  linha = pega_linha(cifras);
   linhaFormatada = strtok(linha, " ");
 
   while (linhaFormatada)
@@ -108,12 +107,11 @@ void montaLinhaCifra(FILE *cifras, chaves_t *chaves, char letra)
   return;
 }
 
-chaves_t *cria_chaves_arq_cifra(FILE *cifras)
+struct chaves_t *cria_chaves_arq_cifra(FILE *cifras)
 {
   char letra;
-  int status = 0;
 
-  chaves_t *chaves = cria_chaves();
+  struct chaves_t *chaves = cria_chaves();
   if (chaves == NULL)
     return chaves;
 
@@ -131,24 +129,22 @@ chaves_t *cria_chaves_arq_cifra(FILE *cifras)
   return chaves;
 }
 
-void escreve_arq_chaves(chaves_t *chaves, FILE *arq)
+void escreve_arq_chaves(struct chaves_t *chaves, FILE *arq)
 {
-  nodo_chaves_t *auxChaves;
-  nodo_lista_t *auxLista;
+  struct nodo_chaves_t *auxChaves;
+  struct nodo_lista_t *auxLista;
 
   auxChaves = chaves->primeiro;
-  auxLista = chaves->primeiro->numeros;
   while (auxChaves)
   {
     fprintf(arq, "%c: ", auxChaves->letra);
+    auxLista = auxChaves->numeros->primeiro;
     while (auxLista)
     {
       fprintf(arq, "%d ", auxLista->num);
       auxLista = auxLista->prox;
     }
-    fseek(arq, -sizeof(char), SEEK_CUR);
     fprintf(arq, "\n");
     auxChaves = auxChaves->prox;
-    auxLista = auxChaves->numeros;
   }
 }

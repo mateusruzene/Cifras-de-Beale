@@ -1,5 +1,5 @@
 # Makefile de exemplo (Manual do GNU Make)
-CFLAGS = -Wall -std=c99 -g
+CFLAGS = -Wall -std=c99
 LDFLAGS = -lm
 
 CC=gcc

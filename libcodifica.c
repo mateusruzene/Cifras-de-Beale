@@ -6,17 +6,16 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
+#include <wctype.h>
+#include "libchaves.h"
+#include "libcifra.h"
+#include "libcodifica.h"
 
-#include "libChaves.h"
-#include "libCifra.h"
-#include "libCodifica.h"
-
-void codifica(chaves_t *chaves, FILE *entrada, FILE *saida)
+void codifica(struct chaves_t *chaves, FILE *entrada, FILE *saida)
 {
     char letra;
 
-    letra = fgets(letra, 1, entrada);
-    while (!feof(entrada))
+    while ((letra = fgetc(entrada)) != EOF)
     {
         letra = towlower(letra);
         if (letra == ' ')
@@ -24,20 +23,17 @@ void codifica(chaves_t *chaves, FILE *entrada, FILE *saida)
         else if (letra == '\n')
             fprintf(saida, "-2\n");
         else
-            fprintf(saida, "%d ", aleatNumCifra(chaves, letra));
-        letra = fgets(letra, 1, entrada);
+            fprintf(saida, "%d ", aleat_num_cifra(chaves, letra));
     }
 }
 
 int codifica_com_livro(FILE *entrada, FILE *saida, FILE *livro, FILE *arqChaves)
 {
-    chaves_t *chaves = cria_chaves_livro(livro);
+    struct chaves_t *chaves = cria_chaves_livro(livro);
     if (chaves == NULL)
         return 1;
-
     codifica(chaves, entrada, saida);
     escreve_arq_chaves(chaves, arqChaves);
-
     destroi_chaves(chaves);
 
     return 0;

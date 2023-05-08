@@ -5,7 +5,7 @@
  */
 
 /* Decodifica a entrada com as chaves e escreve no arquivo de saida*/
-void decodifica(chaves_t *chaves, FILE *entrada, FILE *saida);
+void decodifica(struct chaves_t *chaves, FILE *entrada, FILE *saida);
 
 /* Decodifica para @txtOut o texto em @txtCod com base em @textoBase.*/
 int decodifica_com_livro(FILE *livroCifras, FILE *entrada, FILE *saida);

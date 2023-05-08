@@ -11,9 +11,9 @@
 #include "libcifra.h"
 #include "libdecodifica.h"
 
-void decodifica(chaves_t *chaves, FILE *entrada, FILE *saida)
+void decodifica(struct chaves_t *chaves, FILE *entrada, FILE *saida)
 {
-  nodo_chaves_t *chave;
+  struct nodo_chaves_t *chave;
   int num;
 
   while (fscanf(entrada, "%d", &num) != -1)
@@ -43,7 +43,7 @@ void decodifica(chaves_t *chaves, FILE *entrada, FILE *saida)
 
 int decodifica_com_livro(FILE *livroCifras, FILE *entrada, FILE *saida)
 {
-  chaves_t *chaves = cria_chaves_livro(livroCifras);
+  struct chaves_t *chaves = cria_chaves_livro(livroCifras);
   if (chaves == NULL)
     return 1;
 
@@ -56,13 +56,13 @@ int decodifica_com_livro(FILE *livroCifras, FILE *entrada, FILE *saida)
 
 int decodifica_com_arq_chaves(FILE *cifras, FILE *entrada, FILE *saida)
 {
-  chaves_t *chaves = cria_chaves_arq_cifra(cifras);
+  struct chaves_t *chaves = cria_chaves_arq_cifra(cifras);
   if (chaves == NULL)
     return 1;
 
   decodifica(chaves, entrada, saida);
 
-  destroiCifras(chaves);
+  destroi_chaves(chaves);
 
   return 0;
 }

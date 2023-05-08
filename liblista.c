@@ -8,10 +8,10 @@
 #include <string.h>
 #include "liblista.h"
 
-lista_t *cria_lista()
+struct lista_t *cria_lista()
 {
-    lista_t *lista;
-    if (!(lista = malloc(sizeof(lista_t))))
+    struct lista_t *lista;
+    if (!(lista = malloc(sizeof(struct lista_t))))
         return NULL;
 
     lista->primeiro = NULL;
@@ -20,9 +20,9 @@ lista_t *cria_lista()
     return lista;
 }
 
-lista_t *destroi_lista(lista_t *l)
+struct lista_t *destroi_lista(struct lista_t *l)
 {
-    nodo_lista_t *aux;
+    struct nodo_lista_t *aux;
 
     if (l->primeiro == NULL)
         return NULL;
@@ -39,11 +39,11 @@ lista_t *destroi_lista(lista_t *l)
     return l;
 }
 
-int adiciona_inicio_lista(lista_t *l, int novo_valor)
+int adiciona_inicio_lista(struct lista_t *l, int novo_valor)
 {
-    nodo_lista_t *novo;
+    struct nodo_lista_t *novo;
 
-    if (!(novo = malloc(sizeof(nodo_lista_t))))
+    if (!(novo = malloc(sizeof(struct nodo_lista_t))))
         return 0;
 
     novo->num = novo_valor;
@@ -54,9 +54,9 @@ int adiciona_inicio_lista(lista_t *l, int novo_valor)
     return 1;
 }
 
-int verifica_num_existente(lista_t *lista, int valor)
+int verifica_num_existente(struct lista_t *lista, int valor)
 {
-    nodo_lista_t *aux;
+    struct nodo_lista_t *aux;
 
     aux = lista->primeiro;
     while (aux)
