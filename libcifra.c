@@ -15,7 +15,12 @@ int aleat_num_cifra(struct chaves_t *chaves, char letra)
 {
   struct nodo_chaves_t *chave = busca_chave(chaves, letra);
   struct nodo_lista_t *aux;
-  int aleatorio = rand() % chave->numeros->tam - 1;
+  int aleatorio = 0;
+
+  if (chave->numeros->tam >= 1)
+  {
+    aleatorio = rand() % (chave->numeros->tam);
+  }
 
   aux = chave->numeros->primeiro;
   for (int i = 0; i < aleatorio; i++)

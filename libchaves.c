@@ -107,7 +107,17 @@ struct nodo_chaves_t *adiciona_ordem_chaves(struct chaves_t *chaves, char novo_v
     }
 
     aux = chaves->primeiro;
-    while (aux->prox && novo_valor < aux->letra)
+    if (novo_valor < aux->letra)
+    {
+        novo->letra = novo_valor;
+        novo->prox = aux;
+        novo->numeros = cria_lista();
+        chaves->primeiro = novo;
+        chaves->tam++;
+        return novo;
+    }
+
+    while (aux->prox && novo_valor > aux->prox->letra && novo_valor > aux->letra)
     {
         aux = aux->prox;
     }
