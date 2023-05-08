@@ -3,7 +3,7 @@
  * Autor:
  *   Mateus Siqueira Ruzene - GRR:20221223
  */
-/* Retorna um numero aleatorio da lista da cifra com a chave igual a @letra.*/;
+/* Retorna um numero aleatorio da lista da cifra com a chave igual a letra.*/;
 int aleat_num_cifra(struct chaves_t *chaves, char letra);
 
 /* lê a próxima palavra do arquivo do livroCifra */
