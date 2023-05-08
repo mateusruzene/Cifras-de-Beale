@@ -126,7 +126,7 @@ int main(int argc, char **argv)
         else
         {
             cifra = fopen(argumentos->chaves, "r");
-            decodifica_com_arq_chaves(entrada, saida, cifra);
+            decodifica_com_arq_chaves(cifra, entrada, saida);
             fclose(cifra);
         }
     }

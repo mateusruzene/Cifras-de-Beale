@@ -26,10 +26,6 @@ void decodifica(struct chaves_t *chaves, FILE *entrada, FILE *saida)
     {
       fputc('\n', saida);
     }
-    else if (num == -3)
-    {
-      fputc('?', saida);
-    }
     else
     {
       chave = busca_numero_na_chave(chaves, num);
